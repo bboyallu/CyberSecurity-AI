@@ -31,6 +31,9 @@ pip install -r requirements.txt
 pip install pyinstaller
 
 pyinstaller --onefile --name CyberShieldAI --add-data "app/static;app/static" app/run.py
+
+# Alternative if you prefer a flatter bundle layout:
+# pyinstaller --onefile --name CyberShieldAI --add-data "app/static;static" app/run.py
 ```
 
 The executable will be available at `dist\CyberShieldAI.exe`. Launch it and visit

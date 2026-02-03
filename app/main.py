@@ -17,8 +17,20 @@ app = FastAPI(title="CyberShield AI", version="0.1.0")
 def _static_dir() -> Path:
     if getattr(sys, "frozen", False):
         base_dir = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
-        return base_dir / "app" / "static"
-    return Path(__file__).resolve().parent / "static"
+        candidates = [
+            base_dir / "app" / "static",
+            base_dir / "static",
+        ]
+    else:
+        candidates = [Path(__file__).resolve().parent / "static"]
+
+    for candidate in candidates:
+        if candidate.is_dir():
+            return candidate
+
+    raise RuntimeError(
+        "Static assets directory not found. Ensure the build bundles app/static."
+    )
 
 
 app.mount("/", StaticFiles(directory=_static_dir(), html=True), name="static")
