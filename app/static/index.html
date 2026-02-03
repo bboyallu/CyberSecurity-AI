@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberShield AI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div>
+          <p class="kicker">Neural Sentinel Platform</p>
+          <h1>CyberShield AI Command</h1>
+          <p class="subtitle">
+            Autonomous neural defense with continuous scanning, proactive alerting, and a voice-enabled
+            incident assistant.
+          </p>
+        </div>
+        <button id="alert-btn" class="ghost">Refresh Alerts</button>
+      </header>
+
+      <section class="grid">
+        <div class="panel">
+          <h2>Threat Scan</h2>
+          <form id="scan-form">
+            <label>
+              Target
+              <input name="target" placeholder="Endpoint, subnet, or log path" required />
+            </label>
+            <label>
+              Depth
+              <select name="depth">
+                <option value="quick">Quick</option>
+                <option value="standard" selected>Standard</option>
+                <option value="deep">Deep</option>
+              </select>
+            </label>
+            <button type="submit">Run Scan</button>
+          </form>
+          <div id="scan-output" class="output"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Alerts</h2>
+          <div id="alerts" class="output"></div>
+        </div>
+      </section>
+
+      <section class="panel chat">
+        <div class="chat-header">
+          <h2>AI Chat Ops</h2>
+          <button id="speak-btn" class="ghost">Speak Last Reply</button>
+        </div>
+        <div id="chat-log" class="chat-log"></div>
+        <form id="chat-form">
+          <input name="message" placeholder="Ask CyberShield AI about threats or mitigation" required />
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
