@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 import random
+import sys
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI
@@ -11,7 +13,15 @@ from pydantic import BaseModel, Field
 
 app = FastAPI(title="CyberShield AI", version="0.1.0")
 
-app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
+
+def _static_dir() -> Path:
+    if getattr(sys, "frozen", False):
+        base_dir = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+        return base_dir / "app" / "static"
+    return Path(__file__).resolve().parent / "static"
+
+
+app.mount("/", StaticFiles(directory=_static_dir(), html=True), name="static")
 
 
 class ChatRequest(BaseModel):

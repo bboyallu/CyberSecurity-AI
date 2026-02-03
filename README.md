@@ -20,6 +20,22 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 Open `http://localhost:8000`.
 
+## Windows `.exe` build
+
+Use PyInstaller to bundle the app and its static assets. Run these commands in PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+pip install pyinstaller
+
+pyinstaller --onefile --name CyberShieldAI --add-data "app/static;app/static" app/run.py
+```
+
+The executable will be available at `dist\CyberShieldAI.exe`. Launch it and visit
+`http://localhost:8000`.
+
 ## API
 
 - `POST /api/chat` → conversational assistant
