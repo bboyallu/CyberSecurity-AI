@@ -25,15 +25,38 @@ body {
   gap: 24px;
 }
 
-header {
+.hero {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  padding: 24px;
-  background: rgba(15, 20, 40, 0.8);
+  padding: 28px;
+  background: linear-gradient(135deg, rgba(18, 24, 50, 0.9), rgba(15, 20, 40, 0.6));
   border-radius: 20px;
   border: 1px solid rgba(99, 114, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(114, 134, 255, 0.3), transparent 55%);
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(88, 113, 255, 0.2);
+  border: 1px solid rgba(88, 113, 255, 0.4);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #b7c2ff;
 }
 
 .kicker {
@@ -44,14 +67,62 @@ header {
 }
 
 h1 {
-  font-size: 28px;
-  margin-top: 8px;
+  font-size: 30px;
+  margin-top: 12px;
 }
 
 .subtitle {
   margin-top: 8px;
   color: #b1bbff;
   max-width: 520px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.status-card {
+  background: rgba(10, 14, 28, 0.8);
+  border: 1px solid rgba(99, 114, 255, 0.25);
+  border-radius: 18px;
+  padding: 18px 20px;
+  min-width: 220px;
+  position: relative;
+}
+
+.status-card h2 {
+  font-size: 20px;
+  margin-top: 6px;
+}
+
+.pulse {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  width: 14px;
+  height: 14px;
+  background: #41d9a6;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(65, 217, 166, 0.8);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
 }
 
 button {
@@ -83,10 +154,26 @@ button.ghost {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  box-shadow: 0 20px 40px rgba(7, 9, 20, 0.35);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .panel h2 {
   font-size: 18px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(85, 101, 255, 0.2);
+  color: #b7c2ff;
+  border: 1px solid rgba(85, 101, 255, 0.4);
 }
 
 label {
@@ -143,6 +230,27 @@ select {
   align-items: center;
 }
 
+.orbit {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgba(122, 75, 255, 0.6);
+  position: relative;
+}
+
+.orbit::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff8bd1;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(255, 139, 209, 0.8);
+}
+
 .chat-log {
   display: flex;
   flex-direction: column;
@@ -185,4 +293,15 @@ small,
 em {
   color: #9aa5d9;
   font-size: 12px;
+}
+
+.muted {
+  color: #9aa5d9;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+  }
 }
